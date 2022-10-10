@@ -1,0 +1,76 @@
+<launch>
+    <!-- The planning and execution components of MoveIt! configured to run -->
+    <!-- using the ROS-Industrial interface. -->
+
+    <!-- Choose whether or not to use gui -->
+    <arg name="use_gui" default="false" />
+    <arg name="frequency" default="100" doc="The frequency of the two state publishers."/>
+
+    <!-- | Parameters for iiwa | -->
+    <!-- the "sim" argument controls whether we connect to a Simulated or Real robot. -->
+    <arg name="sim" default="false" doc="If true, the robot will be simulated in Gazebo" />
+    <!-- hardware_interface to use : PositionJointInterface, EffortJointInterface, VelocityJointInterface. -->
+    <arg name="hardware_interface" default="PositionJointInterface"/>
+    <!-- Model of the iiwa to use : iiwa7, iiwa14 -->
+    <arg name="model" default="iiwa7"/>
+    <arg name="rviz" default="true"/>
+    <arg name="iiwa_ns" default="iiwa" doc="The unique iiwa namespace."/>
+
+    <!-- | Parameters for gripper | -->
+    <arg name="device_name" default="qbhand" doc="The unique gripper name."/>
+    <arg name="gripper_ns" default="$(arg device_name)" doc="The unique gripper namespace."/>
+    <arg name="source_list" default="[$(arg iiwa_ns)/joint_states, $(arg gripper_ns)/joint_states]" doc="The joint_states source list for the joint_state_publisher."/>
+
+    <remap from="/$(arg iiwa_ns)/$(arg hardware_interface)_trajectory_controller/follow_joint_trajectory" to="/$(arg hardware_interface)_trajectory_controller/follow_joint_trajectory"/>
+
+    <!-- Run the robot within a Gazebo simulation. -->
+    <group if="$(arg sim)">
+        <!-- Load Gazebo with given values -->
+        <!-- <include file="$(find iiwa_gazebo)/launch/iiwa_gazebo.launch">
+            <arg name="hardware_interface" value="$(arg hardware_interface)"/>
+            <arg name="robot_name" value="$(arg robot_name)"/>
+            <arg name="model" value="$(arg model)"/>
+        </include> -->
+    </group>
+
+    <!-- Bringup drivers. -->
+    <group unless="$(arg sim)">
+        <include file="$(find iiwa_qbhand_bringup)/launch/iiwa_qbhand_bringup.launch">
+            <arg name="hardware_interface" value="$(arg hardware_interface)"/>
+            <arg name="model" value="$(arg model)"/>
+            <arg name="device_name" value="$(arg device_name)"/>
+            <arg name="iiwa_ns" value="$(arg iiwa_ns)"/>
+            <arg name="gripper_ns" value="$(arg gripper_ns)"/>
+        </include>
+    </group>
+
+    <!-- Load move_group -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" unless="$(arg use_gui)">
+        <rosparam param="source_list" subst_value="true">$(arg source_list)</rosparam>
+        <param name="rate" value="$(arg frequency)"/>
+    </node>
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" if="$(arg use_gui)">
+        <rosparam param="source_list" subst_value="true">$(arg source_list)</rosparam>
+        <param name="rate" value="$(arg frequency)"/>
+    </node>
+
+    <!-- Given the published joint states, publish tf for the robot links -->
+    <!-- This node has been call in `iiwa_control.launch`, so we rewrite a new `iiwa_bringup.launch` and remove `robot_state_publisher` -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen">
+        <param name="publish_frequency" value="$(arg frequency)"/>
+    </node>
+
+    <include file="$(find iiwa_qbhand_moveit)/launch/move_group.launch">
+        <arg name="publish_monitored_planning_scene" value="true" />
+        <arg name="hardware_interface" value="$(arg hardware_interface)"/>
+        <arg name="model" value="$(arg model)"/>
+        <arg name="device_name" value="$(arg device_name)"/>
+        <arg name="gripper_ns" value="$(arg gripper_ns)"/>
+    </include>
+
+    <include if="$(arg rviz)" file="$(find iiwa_qbhand_moveit)/launch/moveit_rviz.launch">
+        <arg name="config" value="true"/>
+    </include>
+
+</launch>

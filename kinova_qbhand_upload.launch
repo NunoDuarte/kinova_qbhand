@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <!-- This lauch file just loads the URDF with the given hardware interface and robot name into the ROS Parameter Server -->
+  <arg name="hardware_interface" default="PositionJointInterface"/> 
+  <arg name="robot_name" default="kinova"/>
+  <arg name="model" default="irrelevant_nuno" />
+  
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find kinova_qbhand_description)/urdf/$(arg model)_qbhand.urdf.xacro' hardware_interface:=$(arg hardware_interface) robot_name:=$(arg robot_name)" />
+  
+</launch>

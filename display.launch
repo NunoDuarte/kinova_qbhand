@@ -1,0 +1,16 @@
+<launch>
+
+  <arg name="model" default="kinova"/>
+  <arg name="use_rviz" default="true" doc="Choose whether or not to use rviz."/>
+  <arg name="use_gui" default="true" doc="Choose whether or not to use gui."/>
+
+  <include file="$(find kinova_qbhand_description)/launch/kinova_qbhand_upload.launch" >
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <!-- bring up robot description, joint and robot state publishers (also can start rviz) -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" unless="$(arg use_gui)" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" if="$(arg use_gui)" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find kinova_qbhand_description)/launch/kinova_qbhand.rviz" required="true" />
+</launch>
