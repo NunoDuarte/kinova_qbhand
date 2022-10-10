@@ -1,0 +1,17 @@
+<launch>
+
+
+  <arg name="prefix" default=""/>
+  
+  <!-- loads moveit_controller_manager on the parameter server which is taken as argument
+    if no argument is passed, moveit_simple_controller_manager will be set -->
+  <arg name="moveit_controller_manager" default="moveit_simple_controller_manager/MoveItSimpleControllerManager" />
+  <param name="moveit_controller_manager" value="$(arg moveit_controller_manager)"/>
+  <arg name="hardware_interface" default="PositionJointInterface"/>
+
+  <arg name="device_name" default="" doc="The unique device name of gripper used in the yaml controller configurations (also in the urdf if not already specified there)."/>
+  <arg name="gripper_ns" default="$(arg device_name)" doc="The unique qbhand namespace."/>
+
+  <!-- loads ros_controllers to the param server -->
+  <rosparam file="$(find kinova_qbhand_moveit)/config/$(arg hardware_interface)_controllers.yaml" subst_value="true"/>
+</launch>

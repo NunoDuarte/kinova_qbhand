@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package>
+  <name>kinova_qbhand_description</name>
+  <version>0.0.0</version>
+  <description>The kinova_qbhand_description package</description>
+
+  <maintainer email="dasdas@gmail.com">asdasd</maintainer>
+
+  <license>BSD</license>
+  
+  <build_depend>kinova_description</build_depend>  
+  <run_depend>kinova_description</run_depend>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>

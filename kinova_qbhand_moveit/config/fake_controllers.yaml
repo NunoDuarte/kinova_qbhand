@@ -1,0 +1,19 @@
+controller_list:
+  - name: $(arg prefix)fake_arm_controller
+    joints:
+      - $(arg prefix)joint_1
+      - $(arg prefix)joint_2
+      - $(arg prefix)joint_3
+      - $(arg prefix)joint_4
+      - $(arg prefix)joint_5
+      - $(arg prefix)joint_6
+      - $(arg prefix)joint_7
+  - name: fake_gripper_controller
+    type: $(arg execution_type)
+    joints:
+      - qbhand_synergy_joint
+initial:  # Define initial robot poses.
+  - group: manipulator
+    pose: home
+  - group: gripper
+    pose: open
