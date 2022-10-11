@@ -5,8 +5,8 @@
   <description>
      The bringup(driver) package for iiwa and qbhand manipulator.
   </description>
-  <author email="liyihui.ing@gmail.com">Yihui Li</author>
-  <maintainer email="liyihui.ing@gmail.com">Yihui Li</maintainer>
+  <author email="ferreiraduarte.nuno@gmail.com">Nuno Duarte</author>
+  <maintainer email="ferreiraduarte.nuno@gmail.com">Nuno Duarte</maintainer>
 
   <license>BSD</license>
 
