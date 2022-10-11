@@ -13,8 +13,7 @@
 
 ## Supported ROS Distribution
 
-ROS Melodic and Noetic 
-roslaunch is different and in Ubuntu 20.04 is much trickier to install than in Ubuntu 18.04
+ROS Melodic (Ubuntu 18.04) and Noetic (Ubuntu 20.04). Note that in Ubuntu 20.04 it is harder to install qbhand-ros. 
 
 ## Test qbhand
 run qbhand-ros launch file
