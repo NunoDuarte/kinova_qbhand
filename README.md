@@ -21,7 +21,7 @@ run qbhand-ros launch file
 ```
 roslaunch qb_hand_control control_qbhand.launch standalone:=true activate_on_initialization:=true device_id:=1
 ```
-to close and open manually
+to close and open manually open new terminal
 ```
 rostopic pub /qbhand1/control/qbhand1_synergy_trajectory_controller/command trajectory_msgs/JointTrajectory "header:
   seq: 0
