@@ -1,11 +1,11 @@
 moveit_setup_assistant_config:
   URDF:
-    package: iiwa_qbhand_description
-    relative_path: urdf/iiwa7_qbhand.urdf.xacro
+    package: kinova_qbhand_description
+    relative_path: urdf/kinova_qbhand.urdf.xacro
     xacro_args: ""
   SRDF:
-    relative_path: config/iiwa7_qbhand.srdf
+    relative_path: config/kinova_qbhand.srdf
   CONFIG:
-    author_name: Yihui Li
-    author_email: liyihui.ing@gmail.com
-    generated_timestamp: 1626492794
+    author_name: NunoDuarte
+    author_email: ferreiraduarte.nuno@gmail.com
+    generated_timestamp: 1665591395

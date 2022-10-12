@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="kinova_qbhand">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="arm">
+        <joint name="virtual_joint"/>
+        <joint name="joint_1"/>
+        <joint name="joint_2"/>
+        <joint name="joint_3"/>
+        <joint name="joint_4"/>
+        <joint name="joint_5"/>
+        <joint name="joint_6"/>
+        <joint name="joint_7"/>
+    </group>
+    <group name="gripper">
+        <link name="qbhand_root_link"/>
+        <link name="qbhand_base_link"/>
+        <link name="qbhand_end_effector_link"/>
+        <link name="qbhand_palm_link"/>
+        <link name="qbhand_index_knuckle_link"/>
+        <link name="qbhand_index_proximal_virtual_link"/>
+        <link name="qbhand_index_proximal_link"/>
+        <link name="qbhand_index_middle_virtual_link"/>
+        <link name="qbhand_index_middle_link"/>
+        <link name="qbhand_index_distal_virtual_link"/>
+        <link name="qbhand_index_distal_link"/>
+        <link name="qbhand_little_knuckle_link"/>
+        <link name="qbhand_little_proximal_virtual_link"/>
+        <link name="qbhand_little_proximal_link"/>
+        <link name="qbhand_little_middle_virtual_link"/>
+        <link name="qbhand_little_middle_link"/>
+        <link name="qbhand_little_distal_virtual_link"/>
+        <link name="qbhand_little_distal_link"/>
+        <link name="qbhand_middle_knuckle_link"/>
+        <link name="qbhand_middle_proximal_virtual_link"/>
+        <link name="qbhand_middle_proximal_link"/>
+        <link name="qbhand_middle_middle_virtual_link"/>
+        <link name="qbhand_middle_middle_link"/>
+        <link name="qbhand_middle_distal_virtual_link"/>
+        <link name="qbhand_middle_distal_link"/>
+        <link name="qbhand_ring_knuckle_link"/>
+        <link name="qbhand_ring_proximal_virtual_link"/>
+        <link name="qbhand_ring_proximal_link"/>
+        <link name="qbhand_ring_middle_virtual_link"/>
+        <link name="qbhand_ring_middle_link"/>
+        <link name="qbhand_ring_distal_virtual_link"/>
+        <link name="qbhand_ring_distal_link"/>
+        <link name="qbhand_synergy_tendon_virtual_link"/>
+        <link name="qbhand_thumb_knuckle_link"/>
+        <link name="qbhand_thumb_proximal_virtual_link"/>
+        <link name="qbhand_thumb_proximal_link"/>
+        <link name="qbhand_thumb_distal_virtual_link"/>
+        <link name="qbhand_thumb_distal_link"/>
+        <link name="my_link"/>
+    </group>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="hand" parent_link="base_link" group="gripper"/>
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="base_link"/>
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="base_link" link2="forearm_link" reason="Never"/>
+    <disable_collisions link1="base_link" link2="half_arm_1_link" reason="Never"/>
+    <disable_collisions link1="base_link" link2="half_arm_2_link" reason="Never"/>
+    <disable_collisions link1="base_link" link2="shoulder_link" reason="Adjacent"/>
+    <disable_collisions link1="bracelet_link" link2="forearm_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_base_link" reason="Adjacent"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_index_distal_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_index_knuckle_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_index_middle_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_index_proximal_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_little_distal_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_little_knuckle_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_little_middle_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_little_proximal_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_middle_distal_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_middle_knuckle_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_middle_middle_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_middle_proximal_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_palm_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_ring_distal_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_ring_knuckle_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_ring_proximal_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_thumb_distal_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="bracelet_link" link2="spherical_wrist_2_link" reason="Adjacent"/>
+    <disable_collisions link1="forearm_link" link2="half_arm_1_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="half_arm_2_link" reason="Adjacent"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_base_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_index_distal_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_index_knuckle_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_index_middle_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_index_proximal_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_little_distal_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_little_knuckle_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_little_middle_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_little_proximal_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_middle_distal_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_middle_knuckle_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_middle_middle_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_middle_proximal_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_palm_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_ring_distal_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_ring_knuckle_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_ring_proximal_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_thumb_distal_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="shoulder_link" reason="Never"/>
+    <disable_collisions link1="forearm_link" link2="spherical_wrist_1_link" reason="Adjacent"/>
+    <disable_collisions link1="forearm_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="half_arm_1_link" link2="half_arm_2_link" reason="Adjacent"/>
+    <disable_collisions link1="half_arm_1_link" link2="shoulder_link" reason="Adjacent"/>
+    <disable_collisions link1="half_arm_1_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_base_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_index_distal_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_index_knuckle_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_index_middle_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_index_proximal_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_little_distal_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_little_knuckle_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_little_middle_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_little_proximal_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_middle_distal_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_middle_knuckle_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_middle_middle_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_middle_proximal_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_palm_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_ring_distal_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_ring_knuckle_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="qbhand_ring_proximal_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="shoulder_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="half_arm_2_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_index_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_index_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_index_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_index_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_little_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_little_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_little_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_little_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_middle_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_middle_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_middle_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_middle_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_palm_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_ring_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_ring_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_ring_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_thumb_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_base_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_distal_link" link2="qbhand_index_middle_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_index_distal_link" link2="qbhand_index_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_distal_link" link2="qbhand_little_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_distal_link" link2="qbhand_little_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_distal_link" link2="qbhand_little_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_distal_link" link2="qbhand_little_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_distal_link" link2="qbhand_middle_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_distal_link" link2="qbhand_middle_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_distal_link" link2="qbhand_middle_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_distal_link" link2="qbhand_middle_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_distal_link" link2="qbhand_ring_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_distal_link" link2="qbhand_ring_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_distal_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_distal_link" link2="qbhand_ring_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_distal_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_distal_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_distal_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="qbhand_index_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="qbhand_index_proximal_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="qbhand_little_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="qbhand_little_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="qbhand_little_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="qbhand_little_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="qbhand_middle_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="qbhand_middle_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="qbhand_middle_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="qbhand_middle_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="qbhand_palm_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="qbhand_ring_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="qbhand_ring_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="qbhand_ring_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_knuckle_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="qbhand_index_proximal_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="qbhand_little_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="qbhand_little_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="qbhand_little_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="qbhand_little_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="qbhand_middle_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="qbhand_middle_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="qbhand_middle_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="qbhand_middle_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="qbhand_palm_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="qbhand_ring_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="qbhand_ring_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="qbhand_ring_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="qbhand_thumb_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_middle_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_proximal_link" link2="qbhand_little_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_proximal_link" link2="qbhand_little_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_proximal_link" link2="qbhand_little_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_proximal_link" link2="qbhand_little_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_proximal_link" link2="qbhand_middle_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_proximal_link" link2="qbhand_middle_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_proximal_link" link2="qbhand_middle_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_proximal_link" link2="qbhand_middle_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_proximal_link" link2="qbhand_ring_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_proximal_link" link2="qbhand_ring_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_proximal_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_proximal_link" link2="qbhand_ring_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_proximal_link" link2="qbhand_thumb_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_proximal_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_proximal_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_proximal_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_index_proximal_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_distal_link" link2="qbhand_little_middle_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_little_distal_link" link2="qbhand_little_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_distal_link" link2="qbhand_middle_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_distal_link" link2="qbhand_middle_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_distal_link" link2="qbhand_middle_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_distal_link" link2="qbhand_middle_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_distal_link" link2="qbhand_ring_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_distal_link" link2="qbhand_ring_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_distal_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_distal_link" link2="qbhand_ring_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_distal_link" link2="qbhand_thumb_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_distal_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_distal_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_distal_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_distal_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_knuckle_link" link2="qbhand_little_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_knuckle_link" link2="qbhand_little_proximal_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_little_knuckle_link" link2="qbhand_middle_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_knuckle_link" link2="qbhand_middle_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_knuckle_link" link2="qbhand_middle_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_knuckle_link" link2="qbhand_middle_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_knuckle_link" link2="qbhand_palm_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_little_knuckle_link" link2="qbhand_ring_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_knuckle_link" link2="qbhand_ring_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_knuckle_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_knuckle_link" link2="qbhand_ring_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_knuckle_link" link2="qbhand_thumb_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_knuckle_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_knuckle_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_knuckle_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_knuckle_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_middle_link" link2="qbhand_little_proximal_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_little_middle_link" link2="qbhand_middle_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_middle_link" link2="qbhand_middle_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_middle_link" link2="qbhand_middle_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_middle_link" link2="qbhand_middle_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_middle_link" link2="qbhand_palm_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_middle_link" link2="qbhand_ring_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_middle_link" link2="qbhand_ring_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_middle_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_middle_link" link2="qbhand_ring_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_middle_link" link2="qbhand_thumb_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_middle_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_middle_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_middle_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_middle_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_proximal_link" link2="qbhand_middle_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_proximal_link" link2="qbhand_middle_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_proximal_link" link2="qbhand_middle_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_proximal_link" link2="qbhand_middle_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_proximal_link" link2="qbhand_ring_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_proximal_link" link2="qbhand_ring_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_proximal_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_proximal_link" link2="qbhand_ring_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_proximal_link" link2="qbhand_thumb_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_proximal_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_proximal_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_proximal_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_little_proximal_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_distal_link" link2="qbhand_middle_middle_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_middle_distal_link" link2="qbhand_middle_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_distal_link" link2="qbhand_ring_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_distal_link" link2="qbhand_ring_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_distal_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_distal_link" link2="qbhand_ring_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_distal_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_distal_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_distal_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_distal_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_knuckle_link" link2="qbhand_middle_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_knuckle_link" link2="qbhand_middle_proximal_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_middle_knuckle_link" link2="qbhand_palm_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_middle_knuckle_link" link2="qbhand_ring_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_knuckle_link" link2="qbhand_ring_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_knuckle_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_knuckle_link" link2="qbhand_ring_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_knuckle_link" link2="qbhand_thumb_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_knuckle_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_knuckle_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_knuckle_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_knuckle_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_middle_link" link2="qbhand_middle_proximal_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_middle_middle_link" link2="qbhand_palm_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_middle_link" link2="qbhand_ring_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_middle_link" link2="qbhand_ring_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_middle_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_middle_link" link2="qbhand_ring_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_middle_link" link2="qbhand_thumb_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_middle_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_middle_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_middle_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_middle_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_proximal_link" link2="qbhand_palm_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_proximal_link" link2="qbhand_ring_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_proximal_link" link2="qbhand_ring_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_proximal_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_proximal_link" link2="qbhand_ring_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_proximal_link" link2="qbhand_thumb_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_proximal_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_proximal_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_proximal_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_middle_proximal_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_palm_link" link2="qbhand_ring_knuckle_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_palm_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_palm_link" link2="qbhand_thumb_knuckle_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_palm_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_palm_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_palm_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_distal_link" link2="qbhand_ring_middle_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_ring_distal_link" link2="qbhand_ring_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_distal_link" link2="qbhand_thumb_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_distal_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_distal_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_distal_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_distal_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_knuckle_link" link2="qbhand_ring_middle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_knuckle_link" link2="qbhand_ring_proximal_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_ring_knuckle_link" link2="qbhand_thumb_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_knuckle_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_knuckle_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_knuckle_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_knuckle_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_middle_link" link2="qbhand_ring_proximal_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_ring_middle_link" link2="qbhand_thumb_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_middle_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_middle_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_middle_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_middle_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_proximal_link" link2="qbhand_thumb_distal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_proximal_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_proximal_link" link2="qbhand_thumb_proximal_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_proximal_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_ring_proximal_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_thumb_distal_link" link2="qbhand_thumb_knuckle_link" reason="Never"/>
+    <disable_collisions link1="qbhand_thumb_distal_link" link2="qbhand_thumb_proximal_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_thumb_distal_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_thumb_distal_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_thumb_knuckle_link" link2="qbhand_thumb_proximal_link" reason="Adjacent"/>
+    <disable_collisions link1="qbhand_thumb_knuckle_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_thumb_knuckle_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="qbhand_thumb_proximal_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="qbhand_thumb_proximal_link" link2="spherical_wrist_2_link" reason="Never"/>
+    <disable_collisions link1="shoulder_link" link2="spherical_wrist_1_link" reason="Never"/>
+    <disable_collisions link1="spherical_wrist_1_link" link2="spherical_wrist_2_link" reason="Adjacent"/>
+</robot>

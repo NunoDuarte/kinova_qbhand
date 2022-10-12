@@ -2,51 +2,25 @@
   <!-- By default we do not overwrite the URDF. Change the following to true to change the default behavior -->
   <arg name="load_robot_description" default="false"/>
 
-  <arg name="hardware_interface" default="PositionJointInterface"/>
-  <arg name="model" default="kinova"/>
-
   <!-- The name of the parameter under which the URDF is loaded -->
   <arg name="robot_description" default="robot_description"/>
 
-  <!-- Use the slower (2.0 default) joint speed and acceleration limits, or the hard limits (fastest) -->
-  <arg name="use_hard_limits" default="false"/>
-
-  <!-- The joint and link names prefix used in kortex_description -->
-  <arg name="prefix" default=""/>
-
-  <!-- Loads the URDF with the given hardware interface and robot name into the ROS Parameter Server -->
-  <group if="$(arg load_robot_description)">
- <!--   <include file="$(find iiwa_qbhand_description)/launch/iiwa_qbhand_upload.launch">-->
-    <include file="$(find kinova_qbhand_description)/launch/kinova_qbhand_upload.launch" >
-      <arg name="hardware_interface" value="$(arg hardware_interface)"/>
-      <!-- ``robot_name`` is fixed as ``iiwa`` to fixed [#269](https://github.com/IFL-CAMP/iiwa_stack/issues/269) -->
-      <!--<arg name="robot_name" value="iiwa" />-->
-      <arg name="model" value="$(arg model)" />
-    </include>
-  </group>
+  <!-- Load universal robot description format (URDF) -->
+  <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="xacro  '$(find kinova_qbhand_description)/urdf/kinova_qbhand.urdf.xacro'"/>
 
   <!-- The semantic description that corresponds to the URDF -->
-  <!-- With prefix -->
-  <param name="$(arg robot_description)_semantic" command="$(find xacro)/xacro --inorder $(find kinova_qbhand_moveit)/config/gen3_qbhand.srdf.xacro  prefix:=$(arg prefix)"
-    unless="$(eval not arg('prefix'))"/>
-  <!-- No prefix -->
-  <param name="$(arg robot_description)_semantic" command="$(find xacro)/xacro --inorder $(find kinova_qbhand_moveit)/config/gen3_qbhand.srdf.xacro"
-    if="$(eval not arg('prefix'))"/>
-    
-   
-  <!-- The semantic description that corresponds to the URDF -->
-<!--  <param name="$(arg robot_description)_semantic" textfile="$(find kinova_qbhand_moveit)/config/gen3_qbhand.srdf.xacro" /> -->
-
+  <param name="$(arg robot_description)_semantic" textfile="$(find kinova_qbhand_moveit)/config/kinova_qbhand.srdf" />
 
   <!-- Load updated joint limits (override information from URDF) -->
   <group ns="$(arg robot_description)_planning">
-    <rosparam command="load" file="$(find kinova_qbhand_moveit)/config/default_joint_limits.yaml" unless="$(arg use_hard_limits)" subst_value="true"/>
-    <rosparam command="load" file="$(find kinova_qbhand_moveit)/config/hard_joint_limits.yaml" if="$(arg use_hard_limits)" subst_value="true"/>
+    <rosparam command="load" file="$(find kinova_qbhand_moveit)/config/joint_limits.yaml"/>
+    <rosparam command="load" file="$(find kinova_qbhand_moveit)/config/cartesian_limits.yaml"/>
   </group>
 
   <!-- Load default settings for kinematics; these settings are overridden by settings in a node's namespace -->
   <group ns="$(arg robot_description)_kinematics">
     <rosparam command="load" file="$(find kinova_qbhand_moveit)/config/kinematics.yaml"/>
+
   </group>
 
 </launch>
