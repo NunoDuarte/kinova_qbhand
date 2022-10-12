@@ -1,5 +1,7 @@
 # kinova_qbhand
 
+- Needs to be included the rgb-d camera
+
 ![kinova_qbhand] TODO - add image
 
 - **kinova_qbhand_description** : a URDF for a Kinova gen3 robot with a qbhand attached and a rigid base.
@@ -59,5 +61,5 @@ roslaunch kinova_qbhand_moveit demo.launch
 
 - Real robot control:
 
-TODO
+Working - needs documentation
 
