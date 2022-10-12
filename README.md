@@ -39,6 +39,14 @@ points:
 ```
 set position 1 to close completly and position 0 to open fully. Don't forget to add time in secs.
 
+## Configuration
+Inside **kinova_qbhand_moveit** the file sensor_3d.yaml has parameters on the point cloud data to set before any experiment:
+- point_cloud_topic: change to the correct depth topic
+- max_range: points further than this will not be used. 
+- padding_offset: points closer than this will not be used. 
+
+padding_offset is important to change to prevent moveit to detect the qbhand has an obstacle. 
+
 ## Usage
 
 After installing all the dependencies, you can:
