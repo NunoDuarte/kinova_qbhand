@@ -79,6 +79,78 @@
         <joint name="joint_6" value="0.96"/>
         <joint name="joint_7" value="1.57"/>
     </group_state>
+    <group_state name="open" group="gripper">
+        <joint name="qbhand_index_distal_joint" value="0" />
+        <joint name="qbhand_index_distal_virtual_joint" value="0" />
+        <joint name="qbhand_index_knuckle_joint" value="0" />
+        <joint name="qbhand_index_middle_joint" value="0" />
+        <joint name="qbhand_index_middle_virtual_joint" value="0" />
+        <joint name="qbhand_index_proximal_joint" value="0" />
+        <joint name="qbhand_index_proximal_virtual_joint" value="0" />
+        <joint name="qbhand_little_distal_joint" value="0" />
+        <joint name="qbhand_little_distal_virtual_joint" value="0" />
+        <joint name="qbhand_little_knuckle_joint" value="0" />
+        <joint name="qbhand_little_middle_joint" value="0" />
+        <joint name="qbhand_little_middle_virtual_joint" value="0" />
+        <joint name="qbhand_little_proximal_joint" value="0" />
+        <joint name="qbhand_little_proximal_virtual_joint" value="0" />
+        <joint name="qbhand_middle_distal_joint" value="0" />
+        <joint name="qbhand_middle_distal_virtual_joint" value="0" />
+        <joint name="qbhand_middle_knuckle_joint" value="0" />
+        <joint name="qbhand_middle_middle_joint" value="0" />
+        <joint name="qbhand_middle_middle_virtual_joint" value="0" />
+        <joint name="qbhand_middle_proximal_joint" value="0" />
+        <joint name="qbhand_middle_proximal_virtual_joint" value="0" />
+        <joint name="qbhand_ring_distal_joint" value="0" />
+        <joint name="qbhand_ring_distal_virtual_joint" value="0" />
+        <joint name="qbhand_ring_knuckle_joint" value="0" />
+        <joint name="qbhand_ring_middle_joint" value="0" />
+        <joint name="qbhand_ring_middle_virtual_joint" value="0" />
+        <joint name="qbhand_ring_proximal_joint" value="0" />
+        <joint name="qbhand_ring_proximal_virtual_joint" value="0" />
+        <joint name="qbhand_synergy_joint" value="0" />
+        <joint name="qbhand_thumb_distal_joint" value="0" />
+        <joint name="qbhand_thumb_distal_virtual_joint" value="0" />
+        <joint name="qbhand_thumb_knuckle_joint" value="0" />
+        <joint name="qbhand_thumb_proximal_joint" value="0" />
+        <joint name="qbhand_thumb_proximal_virtual_joint" value="0" />
+    </group_state>
+    <group_state name="close" group="gripper">
+        <joint name="qbhand_index_distal_joint" value="0" />
+        <joint name="qbhand_index_distal_virtual_joint" value="0" />
+        <joint name="qbhand_index_knuckle_joint" value="0" />
+        <joint name="qbhand_index_middle_joint" value="0" />
+        <joint name="qbhand_index_middle_virtual_joint" value="0" />
+        <joint name="qbhand_index_proximal_joint" value="0" />
+        <joint name="qbhand_index_proximal_virtual_joint" value="0" />
+        <joint name="qbhand_little_distal_joint" value="0" />
+        <joint name="qbhand_little_distal_virtual_joint" value="0" />
+        <joint name="qbhand_little_knuckle_joint" value="0" />
+        <joint name="qbhand_little_middle_joint" value="0" />
+        <joint name="qbhand_little_middle_virtual_joint" value="0" />
+        <joint name="qbhand_little_proximal_joint" value="0" />
+        <joint name="qbhand_little_proximal_virtual_joint" value="0" />
+        <joint name="qbhand_middle_distal_joint" value="0" />
+        <joint name="qbhand_middle_distal_virtual_joint" value="0" />
+        <joint name="qbhand_middle_knuckle_joint" value="0" />
+        <joint name="qbhand_middle_middle_joint" value="0" />
+        <joint name="qbhand_middle_middle_virtual_joint" value="0" />
+        <joint name="qbhand_middle_proximal_joint" value="0" />
+        <joint name="qbhand_middle_proximal_virtual_joint" value="0" />
+        <joint name="qbhand_ring_distal_joint" value="0" />
+        <joint name="qbhand_ring_distal_virtual_joint" value="0" />
+        <joint name="qbhand_ring_knuckle_joint" value="0" />
+        <joint name="qbhand_ring_middle_joint" value="0" />
+        <joint name="qbhand_ring_middle_virtual_joint" value="0" />
+        <joint name="qbhand_ring_proximal_joint" value="0" />
+        <joint name="qbhand_ring_proximal_virtual_joint" value="0" />
+        <joint name="qbhand_synergy_joint" value="0.5" />
+        <joint name="qbhand_thumb_distal_joint" value="0" />
+        <joint name="qbhand_thumb_distal_virtual_joint" value="0" />
+        <joint name="qbhand_thumb_knuckle_joint" value="0" />
+        <joint name="qbhand_thumb_proximal_joint" value="0" />
+        <joint name="qbhand_thumb_proximal_virtual_joint" value="0" />
+    </group_state>    
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="hand" parent_link="base_link" group="gripper"/>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
