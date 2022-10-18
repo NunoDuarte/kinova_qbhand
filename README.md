@@ -12,6 +12,7 @@
 
 - [ros_kortex](https://github.com/Kinovarobotics/ros_kortex.git): ROS integration for the Kinova gen3 (6/7 dof).
 - [qbhand-ros](https://bitbucket.org/qbrobotics/qbhand-ros):  A package contains the ROS nodes aimed to visualize and control the qbrobotics® qbhand device.
+- moveit - (moveit assistance was key to create the kinova_qbhand package)
 
 ## Supported ROS Distribution
 
