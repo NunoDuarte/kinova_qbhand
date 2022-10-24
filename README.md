@@ -42,6 +42,11 @@ points:
 ```
 set position 1 to close completly and position 0 to open fully. Don't forget to add time in secs.
 
+## Open qbhand model with Rviz to check TFs
+```
+roslaunch qb_hand_description display_qbhand.launch
+```
+
 ## Configuration
 Inside **kinova_qbhand_moveit** the file sensor_3d.yaml has parameters on the point cloud data to set before any experiment:
 - point_cloud_topic: change to the correct depth topic
