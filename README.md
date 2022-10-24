@@ -48,6 +48,8 @@ roslaunch qb_hand_description display_qbhand.launch
 ```
 ![rviz](qbhand_rviz.png)
 
+qbhand1_end_effector_link could be an interesting reference point to grasp objects
+
 ## Configuration
 Inside **kinova_qbhand_moveit** the file sensor_3d.yaml has parameters on the point cloud data to set before any experiment:
 - point_cloud_topic: change to the correct depth topic
