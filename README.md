@@ -46,6 +46,7 @@ set position 1 to close completly and position 0 to open fully. Don't forget to 
 ```
 roslaunch qb_hand_description display_qbhand.launch
 ```
+![rviz](qbhand_rviz.png)
 
 ## Configuration
 Inside **kinova_qbhand_moveit** the file sensor_3d.yaml has parameters on the point cloud data to set before any experiment:
