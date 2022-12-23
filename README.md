@@ -1,7 +1,9 @@
 # kinova_qbhand
 
 - needs to be included the updates done on kortex_ros/kortex_driver
-- Needs to be included the rgb-d camera
+- TODO the controller of the qbhand on rviz
+- TODO gazebo simulator with kinova + qbhand
+
 
 ![kinova_qbhand] TODO - add image
 
