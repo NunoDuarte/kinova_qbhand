@@ -1,5 +1,6 @@
 # kinova_qbhand
 
+- needs to be included the updates done on kortex_ros/kortex_driver
 - Needs to be included the rgb-d camera
 
 ![kinova_qbhand] TODO - add image
